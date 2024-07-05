@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const postsContainer = document.getElementById("posts-container");
-  const postFiles = ["./post1.html"]; // Add more post files as needed
+  const postFiles = ["post1.html", "post2.html"]; // Add more post files as needed
 
   postFiles.forEach((postFile) => {
     fetch(`./posts/${postFile}`)
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const postElement = document.createElement("div");
         postElement.className = "post";
         postElement.innerHTML = data;
+        console.log(data);
         postsContainer.appendChild(postElement);
       })
       .catch((error) => console.error("Error loading post:", error));

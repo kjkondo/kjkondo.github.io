@@ -1,6 +1,44 @@
 * {
   font-family: "Courier New", Courier, monospace;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  overflow: hidden;
 }
+
+html {
+  width: 45%;
+}
+
 .title {
-  margin-bottom: 0em;
+  margin: 0.2em 0;
+}
+
+.subtitle {
+  margin-top: 0;
+  padding-left: 0.8em;
+}
+
+#post_title {
+  margin-bottom: -0.5em;
+  margin-top: 0.3em;
+  font-size: 1.2rem;
+}
+
+.post {
+  padding: 1em;
+  border: 1px dashed;
+  margin: 1em 0;
+  font-size: 0.8rem;
+}
+
+#post_content {
+  margin-top: 0.5em;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: small;
+  text-align: left; /* Ensure text alignment to the left */
 }
