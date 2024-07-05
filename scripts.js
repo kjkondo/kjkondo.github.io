@@ -19,13 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function extractDateFromFilename(filename) {
     const pattern = /(\d{4})(\d{2})(\d{2})\.html/g;
-    const match = filename.match(pattern);
-    pattern;
-    console.log(filename);
+    const match = filename.split(pattern);
+
     if (match) {
       const year = match[1];
       const month = match[2];
       const day = match[3];
+      console.log(JSON.stringify(match));
       return new Date(`${year}-${month}-${day}`);
     } else {
       return null;
@@ -34,19 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
   function sortObjectsByDate(objects) {
     // Extract dates from filenames and create an array of objects with date properties
     const objectsWithDates = objects.map((obj) => ({
-      filename: obj.name,
+      name: obj.name,
       date: extractDateFromFilename(obj.name),
     }));
-    console.log(objectsWithDates);
     // Sort objects by date descending (newest first)
     objectsWithDates.sort((a, b) => b.date - a.date);
+    console.log(objectsWithDates);
     // Return sorted objects without the date property
     return objectsWithDates.map((obj) => obj.name);
   }
 
   // Extract file names
   postFiles = sortObjectsByDate(data);
-
+  console.log(postFiles);
   postFiles.forEach((postFile) => {
     fetch(`./posts/${postFile}`)
       .then((response) => response.text())
