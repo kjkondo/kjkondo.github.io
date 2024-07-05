@@ -1,11 +1,11 @@
 * {
   font-family: "Courier New", Courier, monospace;
   box-sizing: border-box; /* Include padding and border in element's total width and height */
-  overflow: hidden;
+  width: 700px;
 }
 
-html {
-  width: 45%;
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .title {
@@ -32,13 +32,4 @@ html {
 
 #post_content {
   margin-top: 0.5em;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  font-size: small;
-  text-align: left; /* Ensure text alignment to the left */
 }
