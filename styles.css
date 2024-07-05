@@ -1,7 +1,7 @@
 * {
   font-family: "Courier New", Courier, monospace;
   box-sizing: border-box; /* Include padding and border in element's total width and height */
-  width: 700px;
+  width: 90%;
 }
 
 body {
