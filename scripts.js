@@ -14,10 +14,38 @@ document.addEventListener("DOMContentLoaded", () => {
     throw new Error(`HTTP error! Status: ${xhr.status}`);
   }
 
+  //REST CALL RESPONSE
   const data = JSON.parse(xhr.responseText);
 
+  function extractDateFromFilename(filename) {
+    const pattern = /(\d{4})(\d{2})(\d{2})\.html/g;
+    const match = filename.match(pattern);
+    pattern;
+    console.log(filename);
+    if (match) {
+      const year = match[1];
+      const month = match[2];
+      const day = match[3];
+      return new Date(`${year}-${month}-${day}`);
+    } else {
+      return null;
+    }
+  }
+  function sortObjectsByDate(objects) {
+    // Extract dates from filenames and create an array of objects with date properties
+    const objectsWithDates = objects.map((obj) => ({
+      filename: obj.name,
+      date: extractDateFromFilename(obj.name),
+    }));
+    console.log(objectsWithDates);
+    // Sort objects by date descending (newest first)
+    objectsWithDates.sort((a, b) => b.date - a.date);
+    // Return sorted objects without the date property
+    return objectsWithDates.map((obj) => obj.name);
+  }
+
   // Extract file names
-  postFiles = data.map((item) => "./" + item.name);
+  postFiles = sortObjectsByDate(data);
 
   postFiles.forEach((postFile) => {
     fetch(`./posts/${postFile}`)
@@ -26,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const postElement = document.createElement("div");
         postElement.className = "post";
         postElement.innerHTML = data;
-        console.log(data);
         postsContainer.appendChild(postElement);
       })
       .catch((error) => console.error("Error loading post:", error));
