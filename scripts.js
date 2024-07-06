@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const year = match[1];
       const month = match[2];
       const day = match[3];
-      console.log(JSON.stringify(match));
       return new Date(`${year}-${month}-${day}`);
     } else {
       return null;
@@ -39,14 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }));
     // Sort objects by date descending (newest first)
     objectsWithDates.sort((a, b) => b.date - a.date);
-    console.log(objectsWithDates);
     // Return sorted objects without the date property
     return objectsWithDates.map((obj) => obj.name);
   }
 
   // Extract file names
   postFiles = sortObjectsByDate(data);
-  console.log(postFiles);
   postFiles.forEach((postFile) => {
     fetch(`./posts/${postFile}`)
       .then((response) => response.text())
